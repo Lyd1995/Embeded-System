@@ -15,3 +15,25 @@ E37: No write since last change (add ! to override)
 
 3、etc写成了ect，文件无法写入............
 改一下就好
+
+4、自启问题
+以下问题是因为设置了自动启动
+● tftpd-hpa.service - LSB: HPA's tftp server
+   Loaded: loaded (/etc/init.d/tftpd-hpa; bad; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Wed 2017-05-07 10:56:19 UTC; 1min 17s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 3971 ExecStart=/etc/init.d/tftpd-hpa start (code=exited, status=71)
+
+Feb 07 10:56:19 HOST001 systemd[1]: Starting LSB: HPA's tftp server...
+Feb 07 10:56:19 HOST001 tftpd-hpa[3971]:  * Starting HPA's tftpd in.tftpd
+Feb 07 10:56:19 HOST001 systemd[1]: tftpd-hpa.service: Control process exited, code=exited status=71
+Feb 07 10:56:19 HOST001 systemd[1]: Failed to start LSB: HPA's tftp server.
+Feb 07 10:56:19 HOST001 systemd[1]: tftpd-hpa.service: Unit entered failed state.
+Feb 07 10:56:19 HOST001 systemd[1]: tftpd-hpa.service: Failed with result 'exit-code'.
+解决方法：
+修改：/etc/inetd.conf
+
+5、Error code 2: Access violation
+访问冲突，看看是TFTP的问题还是开发板的问题，由于这次没用开发板，那么TFTP出了问题
+可能1：权限问题，输入：sudo chmod 777 /tftpboot
+但是没有用
