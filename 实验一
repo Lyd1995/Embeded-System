@@ -45,3 +45,6 @@ sudo apt-get install tftpd tftp
 sudo apt-get install tftpd-hpa tftp-hpa
 
 再安装一个监控TFTP的：sudo apt-get install openbsd-inetd
+
+7、解压xz文件
+xz -d
