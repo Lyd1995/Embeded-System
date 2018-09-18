@@ -37,3 +37,11 @@ Feb 07 10:56:19 HOST001 systemd[1]: tftpd-hpa.service: Failed with result 'exit-
 访问冲突，看看是TFTP的问题还是开发板的问题，由于这次没用开发板，那么TFTP出了问题
 可能1：权限问题，输入：sudo chmod 777 /tftpboot
 但是没有用
+
+6、重装一遍TFTP
+首先卸载：sudo apt-get remove tftp tftpd
+再安装回去：
+sudo apt-get install tftpd tftp
+sudo apt-get install tftpd-hpa tftp-hpa
+
+再安装一个监控TFTP的：sudo apt-get install openbsd-inetd
