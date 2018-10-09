@@ -1,0 +1,26 @@
+一、如何写中断程序：
+1、保存中断现场，保存上下文（每个进程都有自己的控制块、内核栈。保存上下文时，保存的地址存放在控制块里面）
+2、根据不同的中断类型进入不同的中断程序
+3、执行中断
+4、返回，弹出中断
+
+二、ARM寄存器：
+
+1个CPSR：current program status register
+
+5个SPSR:saved program status register
+
+1个PC：指向下一条指令（program counter）
+
+30个通用寄存器
+
+任何模式都能存取的R：
+LR(R14):link register
+R13:sp(stack pointer)
+R0~R12
+
+R15：PC
+相应的CPSR
+
+LINUX:中断没有自己的上下文，而是占用了被中断进程的内核栈,保存PC、CPSR、R0
+将中断之前的SP赋给R0，CPSR由中断态转为管理态，这时的SP变为指向内核栈
